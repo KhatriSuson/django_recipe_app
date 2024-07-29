@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+</head>
+
+<body>
+    <h2><B><u>RECIPE LIST</u></B></h2>
+    {% for recipe in recipes %}
+    <li>
+        <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+        <a href="{% url 'recipe_update' recipe.pk %}">Edit</a>
+        <form action="{% url 'recipe_delete' recipe.pk %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <h2>{{ recipe.name }}</h2>
+    <p>Category: {{ recipe.category }}</p>
+    <p>Descripton: {{ recipe.description }}</p>
+    <p>Process: {{recipe.process }}</p>
+    <p>Ingredients: {{ recipe.ingredients }}</p>
+    <img src="{{ recipe.picture.url }}" alt="{{ recipe.name }}">
+    <a href="{% url 'recipe_update' recipe.pk %}">Edit</a>
+    <form action="{% url 'recipe_delete' recipe.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+    <a href="{%url 'recipe_list' %}">Back To Home</a>
+
+</body>
+</html>
